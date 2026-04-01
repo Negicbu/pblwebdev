@@ -1,0 +1,126 @@
+PROJECT AND TEAM INFORMATION
+
+Project Title
+Safe-Stay: Full-Stack Property Listing and Review Platform
+
+Student/Team Information
+
+Team Name:
+Safe-Stay Development Team
+
+Team member 1 (Team Lead):
+Name: [Add Name]
+Student ID: [Add ID]
+Email: [Add Email]
+Picture: [Attach Picture]
+
+Team member 2:
+Name: [Add Name]
+Student ID: [Add ID]
+Email: [Add Email]
+Picture: [Attach Picture]
+
+Team member 3:
+Name: [Add Name]
+Student ID: [Add ID]
+Email: [Add Email]
+Picture: [Attach Picture]
+
+Team member 4:
+Name: [Add Name]
+Student ID: [Add ID]
+Email: [Add Email]
+Picture: [Attach Picture]
+
+
+PROJECT PROGRESS DESCRIPTION
+
+Project Abstract
+Safe-Stay is a full-stack web application for discovering, creating, and managing property listings, with user authentication and review support. The platform allows users to sign up, log in, create listings with image uploads, edit/delete their own listings, and browse listing details. Registered users can also submit reviews and ratings. The backend is built using Node.js, Express.js, and MongoDB (via Mongoose), while the frontend uses EJS templates and static assets. The application integrates Cloudinary for image hosting and uses session-based authentication with Passport.js and Mongo-backed session storage. Current progress includes core CRUD functionality for listings, authentication flows, route-level protection, and form validation middleware. The deployed app link indicates that the product is already accessible in a hosted environment. Remaining work is focused on robustness, bug fixes, improved testing coverage, and feature completeness.
+
+Updated Project Approach and Architecture
+The current architecture follows a modular MVC-style organization. Data models are defined with Mongoose schemas (`listing`, `review`, `user`) and relationships are handled through ObjectId references. Express routes are separated by feature (`listings`, `reviews`, `users`) and include async error handling through a wrapper utility. Input validation is implemented with Joi schemas before persistence. Authentication uses Passport Local Strategy with `passport-local-mongoose`, while sessions are stored in MongoDB via `connect-mongo` for persistence and scalability. File uploads are handled using Multer with Cloudinary storage integration (`multer-storage-cloudinary`). Server-side rendering is implemented with EJS and `ejs-mate` layouts. Middleware ensures access control (`isloggedin`, owner checks, redirect memory) and flash messaging communicates user actions. This approach keeps concerns separated, improves maintainability, and supports iterative feature expansion.
+
+Tasks Completed
+Task Completed | Team Member
+Project setup (Express app structure, dependencies, env config) | Member 1 (Team Lead)
+MongoDB connection and model integration (`listing`, `review`, `user`) | Member 1 + Member 2
+Listings CRUD routes and views (`routes/listing.js`, `views/listings/*`) | Member 2
+Image upload integration (`multer`, Cloudinary, `cloudconfig.js`) | Member 2
+User auth flows (`signup`, `login`, `logout`) using Passport | Member 3
+Session and flash middleware setup (`express-session`, `connect-mongo`, `connect-flash`) | Member 3
+Review creation and linking with listings (`routes/review.js`, `models/review.js`) | Member 4
+Deployment smoke validation (live app reachable from README link) | Member 1
+
+Challenges/Roadblocks
+The main roadblocks have been around data consistency and route-level reliability. One challenge is ensuring consistent schema naming and relation updates between listings and reviews, especially when extending delete workflows. Another challenge is robust validation and error handling across all forms and routes to avoid runtime crashes from malformed input or missing files. Session and environment setup also required careful handling across local/deployed modes (for secret keys and database URLs). Some code-level issues (for example typos in variable names and incomplete delete-review flow) may cause behavior inconsistencies and require cleanup. To solve these issues, the team is applying strict route testing, targeted refactoring of inconsistent names, and adding manual plus automated validation checks before release. A final pass on UX messages and fail-safe redirects is also planned to improve user-facing reliability.
+
+Tasks Pending
+Task Pending | Team Member (to complete)
+Complete review deletion route and full review lifecycle operations | Member 4
+Fix code-level issues/typos and improve error handling in routes | Member 1 + Member 2
+Resolve auth-flow and redirect naming issues in user routes | Member 3
+Add listing filter/search enhancement and UI cleanup | Member 2
+Improve authorization edge-case handling and session hardening | Member 3
+Create structured test cases and execute end-to-end validation | Member 4 (lead) + all members
+Prepare final documentation, screenshots, and demo script | Member 1 (lead) + Member 4
+
+Project Outcome/Deliverables
+Key outcomes include a functional full-stack property listing web platform with authentication, authorization, image upload support, and relational review data. Deliverables include: source code repository, running deployed application, modular route/model architecture, validated listing/review forms, user account flows (signup/login/logout), database-backed session handling, and core UI pages for listing index/show/new/edit. Additional expected deliverables are final test evidence, bug-fix log, and project presentation/demo materials.
+
+Progress Overview
+The project is substantially complete in terms of core functionality and architecture. Major modules (listings, users, reviews, sessions, uploads) are implemented and integrated, putting overall completion around 75-85%. The application is ahead in deployment readiness because a hosted version is already available. Slightly behind schedule are quality-assurance tasks: comprehensive test coverage, cleanup of minor logic inconsistencies, and completion of some review-management actions. With focused final sprint work, the team can close pending items and stabilize for final submission.
+
+Codebase Information
+Repository link: Local project folder (`Safe-Stay-main 2`) and deployed URL in README: https://mern-project-jupb.onrender.com/listings
+Branch: Not available (Git repository is not initialized in current workspace)
+Important commits: Not available in current workspace (no Git history detected)
+Important implemented modules:
+- `app.js` (server bootstrapping, middleware, session, auth, routes)
+- `routes/listing.js`, `routes/review.js`, `routes/user.js`
+- `models/listing.js`, `models/review.js`, `models/user.js`
+- `cloudconfig.js`, `middleware.js`, `schema.js`
+
+Testing and Validation Status
+Test Type | Status (Pass/Fail) | Notes
+Manual route testing (listings CRUD) | Pass | Listing pages and major CRUD routes working
+Authentication flow testing | Pass | Signup/login/logout integrated with sessions
+Review creation flow testing | Pass | Review creation and association with listings works
+Negative input validation checks | Partial | Joi validation exists, further boundary checks pending
+Automated unit/integration tests | Fail/Not Implemented | No dedicated automated test suite yet
+Deployment smoke test | Pass | App reachable via deployed URL
+
+Deliverables Progress
+Core web application: Completed
+Authentication and authorization: Completed (minor edge cases in progress)
+Listing management (CRUD): Completed
+Review module: In progress (delete and full lifecycle refinements pending)
+Cloud image upload integration: Completed
+Validation and error middleware: In progress (refinement pending)
+Testing documentation and evidence: In progress
+Final report and presentation assets: In progress
+
+Detailed Role Allocation (According to Current Code Status)
+Member 1 - Team Lead, Integration, Release Owner
+- Owns final integration in `app.js` (route mounting, middleware sequence, global error flow).
+- Manages project timeline, task tracking, and final quality gate before submission.
+- Handles environment/deployment consistency (Mongo URL, secret, production checks).
+- Leads code cleanup for integration issues and coordinates final merge validation.
+
+Member 2 - Listings and Media Module Owner
+- Owns `models/listing.js` and the complete listing lifecycle in `routes/listing.js`.
+- Maintains listing pages (`index`, `show`, `new`, `edit`) and form behavior in EJS views.
+- Owns image upload workflow using `multer-storage-cloudinary` and `cloudconfig.js`.
+- Fixes listing-side defects (typos, update edge cases, image update paths).
+
+Member 3 - Authentication, Session, Access Control Owner
+- Owns `models/user.js` and all user routes in `routes/user.js`.
+- Maintains Passport local strategy and login/signup/logout reliability.
+- Owns session persistence setup (`connect-mongo`) and flash/redirect experience.
+- Handles auth/security edge cases in middleware (`isloggedin`, ownership enforcement).
+
+Member 4 - Reviews, Validation, Testing and Documentation Owner
+- Owns `models/review.js` and review route completion in `routes/review.js`.
+- Completes pending review delete/update consistency and relation cleanup.
+- Owns request validation quality (`schema.js`) and negative-case test scenarios.
+- Leads test evidence collection, bug log, report refinement, and submission documentation.
